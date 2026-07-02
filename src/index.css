@@ -1,88 +1,29 @@
 :root {
-  /* Paleta Oficial Banco Pichincha */
-  --c-pichincha-yellow: #ffdd00;     /* Amarillo vibrante característico */
-  --c-pichincha-blue: #0f265c;       /* Azul marino profundo institucional */
-  --c-pichincha-blue-light: #193b8b; /* Azul para hovers/acentos interactivos */
-  --c-pichincha-gray-bg: #f4f6f9;    /* Fondo gris claro limpio para la app */
-  
-  /* Mapeo a variables del sistema original */
-  --c-primary: var(--c-pichincha-blue);
-  --c-primary-dark: var(--c-pichincha-blue-light);
-  --c-accent: var(--c-pichincha-yellow);
-  
-  --c-bg: var(--c-pichincha-gray-bg);
+  /* Paleta Banco Andino (azul institucional + amarillo de acento) */
+  --c-acento-amarillo: #ffdd00;
+  --c-primario-azul: #0f265c;
+  --c-primario-azul-claro: #193b8b;
+  --c-fondo-gris: #f4f6f9;
+
+  /* Mapeo a variables del sistema */
+  --c-primary: var(--c-primario-azul);
+  --c-primary-dark: var(--c-primario-azul-claro);
+  --c-accent: var(--c-acento-amarillo);
+
+  --c-bg: var(--c-fondo-gris);
   --c-surface: #ffffff;
   --c-border: #e2e8f0;
-  --c-text: #0f265c;                 /* El texto principal lee en azul Pichincha */
+  --c-text: var(--c-primario-azul);
   --c-text-soft: #64748b;
 
-  /* Estados (semáforo refinado y accesible) */
+  /* Estados (semáforo) */
   --c-verde: #10b981;
   --c-amarillo: #f59e0b;
   --c-rojo: #ef4444;
 
-  /* Radio de curvatura moderno y amigable como su web corporativa */
   --radius: 12px;
   --shadow: 0 4px 12px rgba(15, 38, 92, 0.05), 0 1px 3px rgba(15, 38, 92, 0.03);
   font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
-}
-
-/* Línea estética superior estilo corporativo */
-.franja-top {
-  height: 4px;
-  background: var(--c-pichincha-blue);
-}
-
-/* ---------- Modal ---------- */
-.modal-overlay {
-  position: fixed;
-  inset: 0;
-  background: rgba(15, 38, 92, 0.4); /* Blur con tinte azul institucional */
-  backdrop-filter: blur(4px);
-  display: grid;
-  place-items: center;
-  z-index: 1000;
-  padding: 20px;
-}
-.modal-card {
-  position: relative;
-  background: #fff;
-  border-radius: 20px;
-  width: 390px;
-  max-width: 100%;
-  padding: 34px 32px 30px;
-  box-shadow: 0 20px 40px rgba(15, 38, 92, 0.15);
-  animation: modalIn 0.18s ease;
-}
-@keyframes modalIn {
-  from {
-    opacity: 0;
-    transform: translateY(8px) scale(0.98);
-  }
-}
-.modal-card::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 6px;
-  border-radius: 20px 20px 0 0;
-  background: var(--c-pichincha-yellow); /* Detalle amarillo arriba */
-}
-.modal-close {
-  position: absolute;
-  top: 14px;
-  right: 14px;
-  background: transparent;
-  border: none;
-  cursor: pointer;
-  color: var(--c-text-soft);
-  display: grid;
-  place-items: center;
-}
-.modal-close:hover {
-  color: var(--c-rojo);
 }
 
 * {
@@ -97,7 +38,7 @@ body {
 }
 
 a {
-  color: var(--c-pichincha-blue-light);
+  color: var(--c-primario-azul-claro);
   text-decoration: none;
   font-weight: 600;
 }
@@ -105,272 +46,75 @@ a:hover {
   text-decoration: underline;
 }
 
-/* ---------- Layout (App Shell) ---------- */
-.app-shell {
+/* ---------- Login ---------- */
+.login-wrap {
   min-height: 100vh;
   display: flex;
-  flex-direction: column;
-}
-.app-body {
-  display: flex;
-  flex: 1;
-}
-.app-content {
-  flex: 1;
-  padding: 24px 32px;
-  overflow-x: auto;
-}
-
-/* Navbar (Estilo limpio de la web comercial) */
-.navbar {
-  height: 65px;
-  background: var(--c-surface);
-  color: var(--c-pichincha-blue);
-  display: flex;
   align-items: center;
-  justify-content: space-between;
-  padding: 0 24px;
-  border-bottom: 3px solid var(--c-pichincha-yellow); /* Franja amarilla característica */
-  box-shadow: var(--shadow);
+  justify-content: center;
+  background: linear-gradient(135deg, #ff7a3d, var(--c-primario-azul) 55%);
+  position: relative;
 }
-.navbar__brand {
-  display: flex;
-  align-items: center;
-  gap: 10px;
+.login-card {
+  background: #fff;
+  padding: 40px;
+  border-radius: 20px;
+  width: 370px;
+  max-width: 100%;
+  box-shadow: 0 20px 40px rgba(15, 38, 92, 0.15);
+}
+.login-card__franja {
+  height: 5px;
+  border-radius: 6px;
+  background: var(--c-acento-amarillo);
+  margin-bottom: 22px;
+}
+.login-card h1 {
+  margin: 0 0 6px;
+  font-size: 22px;
   font-weight: 800;
-  font-size: 18px;
-  letter-spacing: -0.3px;
-  color: var(--c-pichincha-blue);
+  color: var(--c-primario-azul);
 }
-.navbar__user {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  font-size: 13px;
-}
-.navbar__logout {
-  background: var(--c-pichincha-blue);
-  color: #fff;
-  border: none;
-  padding: 8px 16px;
-  border-radius: 20px; /* Estilo píldora oficial */
-  font-weight: 600;
-  cursor: pointer;
-  transition: background 0.2s;
-}
-.navbar__logout:hover {
-  background: var(--c-pichincha-blue-light);
-}
-
-/* Sidebar Navigation */
-.sidebar {
-  width: 230px;
-  background: var(--c-surface);
-  border-right: 1px solid var(--c-border);
-  padding: 20px 12px;
-}
-.sidebar__section {
-  margin-bottom: 14px;
-}
-.sidebar__title {
-  font-size: 11px;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.8px;
+.login-card p {
+  margin: 0 0 24px;
   color: var(--c-text-soft);
-  padding: 6px 14px 6px;
-  margin: 0;
-}
-.sidebar__link {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  padding: 10px 14px;
-  border-radius: 10px;
-  color: var(--c-pichincha-blue);
-  margin-bottom: 4px;
-  font-weight: 600;
   font-size: 13.5px;
-  text-decoration: none;
-  transition: all 0.2s;
-}
-.sidebar__link:hover {
-  background: rgba(255, 221, 0, 0.15); /* Sutil amarillo en hover */
-  text-decoration: none;
-}
-.sidebar__link.active {
-  background: var(--c-pichincha-blue);
-  color: #fff;
 }
 
-/* ---------- Cards / Typography ---------- */
-.page-title {
-  font-size: 24px;
-  font-weight: 800;
-  color: var(--c-pichincha-blue);
-  margin: 0 0 4px;
-  letter-spacing: -0.5px;
-}
-.page-subtitle {
-  color: var(--c-text-soft);
-  margin: 0 0 20px;
-}
-.card {
-  background: var(--c-surface);
-  border: 1px solid var(--c-border);
-  border-radius: var(--radius);
-  box-shadow: var(--shadow);
-  padding: 24px;
-}
-.grid {
-  display: grid;
-  gap: 16px;
-}
-.grid-kpi {
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-}
-.grid-2 {
-  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
-}
-
-/* ---------- KPI Cards ---------- */
-.kpi-card {
-  background: var(--c-surface);
-  border: 1px solid var(--c-border);
-  border-left: 5px solid var(--c-pichincha-yellow); /* Detalle amarillo a la izquierda */
-  border-radius: var(--radius);
-  padding: 18px 20px;
-  box-shadow: var(--shadow);
-}
-.kpi-card__label {
-  color: var(--c-text-soft);
-  font-size: 12px;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-}
-.kpi-card__value {
-  color: var(--c-pichincha-blue);
-  font-size: 28px;
-  font-weight: 800;
-  margin-top: 6px;
-}
-
-/* ---------- Tables ---------- */
-table.tbl {
-  width: 100%;
-  border-collapse: collapse;
-  font-size: 13px;
-}
-table.tbl th,
-table.tbl td {
-  text-align: left;
-  padding: 12px 14px;
-  border-bottom: 1px solid var(--c-border);
-}
-table.tbl th {
-  background: #f8fafc;
-  color: var(--c-pichincha-blue);
-  font-weight: 700;
-  text-transform: uppercase;
-  font-size: 11px;
-  letter-spacing: 0.4px;
-}
-table.tbl tbody tr:hover {
-  background: rgba(255, 221, 0, 0.05); /* Hover con tinte amarillo */
-}
-.num {
-  text-align: right;
-  font-variant-numeric: tabular-nums;
-}
-
-/* ---------- Badges Semáforo ---------- */
-.badge {
-  display: inline-block;
-  padding: 4px 12px;
-  border-radius: 999px;
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 0.3px;
-}
-.badge--verde {
-  background: #e6f4ea;
-  color: var(--c-verde);
-}
-.badge--amarillo {
-  background: #fff8e1;
-  color: var(--c-amarillo);
-}
-.badge--rojo {
-  background: #fce8e6;
-  color: var(--c-rojo);
-}
-.badge--neutral {
-  background: #f1f5f9;
-  color: var(--c-text-soft);
-}
-
-/* ---------- inputs y Formularios (Estilo Web) ---------- */
-.form-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 16px;
-}
 .field {
   display: flex;
   flex-direction: column;
   gap: 6px;
+  margin-bottom: 18px;
 }
 .field label {
   font-weight: 700;
   font-size: 13px;
-  color: var(--c-pichincha-blue);
+  color: var(--c-primario-azul);
 }
-.field input,
-.field select {
+.field input {
   padding: 10px 12px;
   border: 1px solid var(--c-border);
   border-radius: 10px;
   font-size: 14px;
   background: #fff;
-  color: var(--c-pichincha-blue);
+  color: var(--c-primario-azul);
   transition: all 0.2s;
 }
-.field input:focus,
-.field select:focus {
+.field input:focus {
   outline: none;
-  border-color: var(--c-pichincha-blue);
+  border-color: var(--c-primario-azul);
   box-shadow: 0 0 0 3px rgba(15, 38, 92, 0.1);
 }
 
-/* Botones Oficiales Pichincha (Píldora / Curvados) */
-.btn {
-  background: var(--c-pichincha-blue);
-  color: #fff;
-  border: none;
-  padding: 12px 24px;
-  border-radius: 24px; /* Totalmente curvo como en la web */
-  font-size: 14px;
-  font-weight: 700;
-  cursor: pointer;
-  transition: all 0.2s;
-}
-.btn:hover:not(:disabled) {
-  background: var(--c-pichincha-blue-light);
-}
-.btn:disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
-}
-.btn--ghost {
-  background: transparent;
-  color: var(--c-pichincha-blue);
-  border: 2px solid var(--c-pichincha-blue);
-}
-.btn--ghost:hover:not(:disabled) {
-  background: rgba(15, 38, 92, 0.05);
+.login-card__remember {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 13px;
+  margin-bottom: 18px;
 }
 
-/* ---------- Alerts & Feedbacks ---------- */
 .alert {
   padding: 14px 18px;
   border-radius: 10px;
@@ -387,6 +131,27 @@ table.tbl tbody tr:hover {
   color: #0369a1;
 }
 
+/* Botón principal (píldora, color de marca) */
+.btn {
+  width: 100%;
+  background: var(--c-primario-azul);
+  color: #fff;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 24px;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.btn:hover:not(:disabled) {
+  background: var(--c-primario-azul-claro);
+}
+.btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
 .loader {
   display: inline-flex;
   align-items: center;
@@ -397,292 +162,10 @@ table.tbl tbody tr:hover {
   width: 20px;
   height: 20px;
   border: 3px solid var(--c-border);
-  border-top-color: var(--c-pichincha-blue);
+  border-top-color: var(--c-primario-azul);
   border-radius: 50%;
   animation: spin 0.7s linear infinite;
 }
 @keyframes spin {
   to { transform: rotate(360deg); }
-}
-
-/* ---------- Login (Inspirado en el Banner del Home) ---------- */
-.login-wrap {
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: var(--c-pichincha-yellow); /* Fondo amarillo corporativo vibrante */
-  position: relative;
-}
-.login-card__franja {
-  height: 5px;
-  border-radius: 6px;
-  background: var(--c-pichincha-blue);
-  margin-bottom: 22px;
-}
-.login-card {
-  background: #fff;
-  padding: 40px;
-  border-radius: 20px;
-  width: 370px;
-  box-shadow: 0 20px 40px rgba(15, 38, 92, 0.15);
-}
-.login-card h1 {
-  margin: 0 0 6px;
-  font-size: 22px;
-  font-weight: 800;
-  color: var(--c-pichincha-blue);
-}
-.login-card p {
-  margin: 0 0 24px;
-  color: var(--c-text-soft);
-  font-size: 13.5px;
-}
-
-/* ---------- Score gauge ---------- */
-.score-gauge {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 8px;
-}
-.score-gauge__num {
-  font-size: 42px;
-  font-weight: 800;
-  color: var(--c-pichincha-blue);
-}
-
-/* ---------- Workbench / Bandeja de Flujo de Trabajo ---------- */
-.wb-top {
-  display: grid;
-  grid-template-columns: 1fr 1.5fr;
-  gap: 14px;
-  margin-bottom: 14px;
-}
-@media (max-width: 820px) {
-  .wb-top { grid-template-columns: 1fr; }
-}
-.wb-panel {
-  border: 1px solid var(--c-border);
-  border-radius: 12px;
-  background: var(--c-surface);
-  padding: 16px 20px;
-  box-shadow: var(--shadow);
-}
-.wb-panel__title {
-  font-size: 12px;
-  font-weight: 800;
-  text-transform: uppercase;
-  letter-spacing: 0.6px;
-  color: var(--c-pichincha-blue);
-  margin: 0 0 12px;
-  padding-bottom: 6px;
-  border-bottom: 2px solid var(--c-pichincha-yellow); /* Detalle amarillo divisorio */
-}
-.wb-fields {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-  gap: 10px 16px;
-}
-.wb-field {
-  display: flex;
-  flex-direction: column;
-  gap: 3px;
-}
-.wb-field > label {
-  font-size: 11px;
-  color: var(--c-text-soft);
-  font-weight: 700;
-}
-.wb-field > .val {
-  font-weight: 700;
-  font-size: 14px;
-  color: var(--c-pichincha-blue);
-}
-.wb-field input,
-.wb-field select {
-  padding: 8px 10px;
-  border: 1px solid var(--c-border);
-  border-radius: 8px;
-  font-size: 13px;
-  background: #fff;
-  color: var(--c-pichincha-blue);
-}
-.wb-field input:focus,
-.wb-field select:focus {
-  outline: none;
-  border-color: var(--c-pichincha-blue);
-}
-
-/* Barra de acciones inferior */
-.wb-toolbar {
-  display: flex;
-  gap: 8px;
-  flex-wrap: wrap;
-  align-items: stretch;
-  padding: 12px;
-  border: 1px solid var(--c-border);
-  border-radius: 12px;
-  background: #f8fafc;
-  margin-top: 14px;
-}
-.wb-tool {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 4px;
-  background: var(--c-surface);
-  border: 1px solid var(--c-border);
-  border-radius: 10px;
-  padding: 10px 14px;
-  font-size: 11.5px;
-  font-weight: 700;
-  cursor: pointer;
-  min-width: 90px;
-  color: var(--c-pichincha-blue);
-  text-align: center;
-  transition: all 0.2s;
-}
-.wb-tool:hover:not(:disabled) {
-  border-color: var(--c-pichincha-blue);
-  background: rgba(255, 221, 0, 0.15);
-}
-.wb-tool:disabled {
-  opacity: 0.45;
-  cursor: not-allowed;
-}
-.wb-tool--exit {
-  margin-left: auto;
-  color: var(--c-rojo);
-  border-color: #fbcfe8;
-}
-
-table.tbl tbody tr.sel {
-  background: rgba(255, 221, 0, 0.12) !important;
-  box-shadow: inset 4px 0 0 var(--c-pichincha-blue);
-}
-
-/* ---------- Barras Horizontales de Mora ---------- */
-.barlist {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-.barlist__row {
-  display: grid;
-  grid-template-columns: 120px 1fr 52px;
-  align-items: center;
-  gap: 12px;
-  font-size: 13px;
-}
-.barlist__label {
-  font-weight: 700;
-  color: var(--c-pichincha-blue);
-}
-.barlist__track {
-  background: #e2e8f0;
-  border-radius: 6px;
-  height: 18px;
-  overflow: hidden;
-}
-.barlist__fill {
-  height: 100%;
-  background: var(--c-pichincha-blue); /* Relleno con el color de marca */
-  border-radius: 6px;
-  transition: width 0.5s ease;
-}
-.barlist__row:nth-child(even) .barlist__fill {
-  background: var(--c-pichincha-blue-light); /* Variación de tono */
-}
-.barlist__val {
-  text-align: right;
-  font-variant-numeric: tabular-nums;
-  font-weight: 700;
-  color: var(--c-pichincha-blue);
-}
-
-/* ---------- Tabs / Filtros superiores ---------- */
-.tabs {
-  display: flex;
-  gap: 6px;
-  flex-wrap: wrap;
-  margin-bottom: 16px;
-}
-.tab {
-  background: var(--c-surface);
-  border: 1px solid var(--c-border);
-  color: var(--c-pichincha-blue);
-  padding: 8px 18px;
-  border-radius: 20px; /* Estilo redondeado institucional */
-  font-size: 13px;
-  font-weight: 700;
-  cursor: pointer;
-  transition: all 0.2s;
-}
-.tab:hover {
-  border-color: var(--c-pichincha-blue);
-  background: rgba(255, 221, 0, 0.1);
-}
-.tab.active {
-  background: var(--c-pichincha-blue);
-  border-color: var(--c-pichincha-blue);
-  color: #fff;
-}
-.tab__count {
-  margin-left: 6px;
-  font-size: 11px;
-  opacity: 0.9;
-}
-
-/* ---------- Stepper (Ruta de aprobación) ---------- */
-.ruta-steps {
-  display: flex;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 8px;
-}
-.ruta-step {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-.ruta-step__dot {
-  width: 28px;
-  height: 28px;
-  border-radius: 50%;
-  background: var(--c-pichincha-blue);
-  color: #fff;
-  display: grid;
-  place-items: center;
-  font-size: 13px;
-  font-weight: 700;
-  flex: 0 0 auto;
-}
-.ruta-step__label {
-  font-size: 13px;
-  font-weight: 700;
-  color: var(--c-pichincha-blue);
-}
-.ruta-step__line {
-  width: 28px;
-  height: 2px;
-  background: var(--c-border);
-  margin: 0 4px;
-}
-
-.detalle-list {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-.detalle-list li {
-  display: flex;
-  justify-content: space-between;
-  padding: 10px 0;
-  border-bottom: 1px solid var(--c-border);
-}
-.detalle-list li span:first-child {
-  color: var(--c-text-soft);
-  font-weight: 500;
 }

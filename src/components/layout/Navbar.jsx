@@ -8,7 +8,11 @@ export default function Navbar() {
   return (
     <header className="navbar">
       <div className="navbar__brand">
-        <Logo size={36} variant="light" />
+      <img
+        src="./assets/bancopichincha.png"          
+        alt="Logo"
+        width={150}
+      />
       </div>
       <div className="navbar__user">
         {user && (

@@ -282,7 +282,11 @@ export default function HomePage() {
       <div className="home__franja" />
 
       <header className="home-header">
-        <Logo size={56} />
+        <img
+          src="./assets/bancopichincha.png"          
+          alt="Logo"
+          width={150}
+        />
         <span className="home-header__chip">Sistema interno · Uso exclusivo del personal</span>
       </header>
 
@@ -371,3 +375,4 @@ export default function HomePage() {
     </div>
   )
 }
+
